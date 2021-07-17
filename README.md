@@ -13,7 +13,7 @@ I'm using a kali virtual machine and connecting via openVPN
 
 ## First task
 
-As I'm running nmap (in order to enumerate the machine) as root the scan would be a syn scan by default: 
+Since I'm running nmap (in order to enumerate the machine) as root, the scan would be a syn scan by default: 
 
 `nmap -A $MACHINE_IP`
 
@@ -21,7 +21,7 @@ Just count the open ports.
 
 ## Second task/Third task
 
--A flag being used the command for the first question also gives the answers for the second and the third
+-A flag being used, the command for the first question also gives the answers for the second and the third ones.
 
 ## Fourth task
 
@@ -52,7 +52,7 @@ Entered username "anonymous" and no password.
 There was one directory called scripts containing some files: clean.sh , removed_files.log, to_do.txt
 
 I used 'get <filename' ftp's command to get them on my machine: 
-to_do.txt -> was a note from the admin wich states that anonymous login is not secure ... you don't say!
+to_do.txt -> was a note from the admin which states that anonymous login is not secure ... you don't say!
 clean.sh -> It's a cleanup scripts that is going to write something in removed_files.log when it's executed
 removed_files.log -> contains the log from the previous script.
 
@@ -65,15 +65,15 @@ Monitoring the content of removed_files.log I realized that the script was runni
 
 I uploaded it with ftp overriding the old clean.sh, started a netcat listener (`nc -lvnp 4445`) and waited few seconds.
 
-I receveid a reverse shell wich I stabilized by background the process (ctrl + z) and running `stty raw -echo; fg`
+I receveid a reverse shell which I stabilized by background the process (ctrl + z) and running `stty raw -echo; fg`
 
-I ran `id` and `whoami` to acknowledge I was logged as 'namelessone' in which home directory I found the file user.txt containing the flag for this task
+I ran `id` and `whoami` to acknowledge I was logged as 'namelessone' in whose home directory I found the file user.txt containing the flag for this task
 
 ## Sixth task
 
-As I'm used to do the first thing to find privilage escaltion vectors was 
+As I usually do, the first thing to find privilage escaltion vectors was 
 `find / -perm /6000 2>/dev/null`
-which reveals you all the files with the SUID set so you can see if there is something unusual, in this case I found the bin "/usr/bin/env" which I searched for on GTFOBins, I found the exploitaion wich requires you to change directory in /usr/bin and run
+which reveals you all the files with the SUID set so you can see if there is something unusual. In this case I found the bin "/usr/bin/env" which I searched for on GTFOBins, I found the exploitaion which requires you to change directory in /usr/bin and run
 `./env /bin/sh -p`
 This gave me a root reverse shell I could use to retrieve the root flag located in /root
 
