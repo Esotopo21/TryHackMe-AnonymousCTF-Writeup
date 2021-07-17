@@ -71,7 +71,7 @@ I ran `id` and `whoami` to acknowledge I was logged as 'namelessone' in whose ho
 
 ## Sixth task
 
-As I usually do, the first thing to find privilage escaltion vectors was 
+As I usually do, the first thing to find privilege escalation vectors was 
 `find / -perm /6000 2>/dev/null`
 which reveals you all the files with the SUID set so you can see if there is something unusual. In this case I found the bin "/usr/bin/env" which I searched for on GTFOBins, I found the exploitaion which requires you to change directory in /usr/bin and run
 `./env /bin/sh -p`
